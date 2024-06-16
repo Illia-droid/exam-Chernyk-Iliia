@@ -1,13 +1,13 @@
-import isEqual from 'lodash/isEqual';
+
+
 import WebSocket from './WebSocket';
-import CONTANTS from '../../../constants';
 import {
   addMessage,
   changeBlockStatusInStore,
 } from '../../../store/slices/chatSlice';
-import _ from 'lodash';
+import CONTANTS from '../../../constants';
 
-class ChatSocket extends WebSocket {
+class ChatSocket extends WebSocket { //eslint-disable-next-line
   constructor (dispatch, getState, room) {
     super(dispatch, getState, room);
   }

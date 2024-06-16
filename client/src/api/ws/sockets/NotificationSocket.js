@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import WebSocket from './WebSocket';
 import Notification from '../../../components/Notification/Notification';
 
-class NotificationSocket extends WebSocket {
+class NotificationSocket extends WebSocket {//eslint-disable-next-line
   constructor (dispatch, getState, room) {
     super(dispatch, getState, room);
   }
