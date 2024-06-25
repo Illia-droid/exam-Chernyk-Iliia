@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import {
@@ -19,6 +19,9 @@ const CustomerDashboard = (props) => {
       props.clearContestsList();
     }; //eslint-disable-next-line
   }, [props.customerFilter]);
+
+  const [isSelect, setIsSelect] = useState(CONSTANTS.CONTEST_STATUS_ACTIVE);
+
   const loadMore = (startFrom) => {
     props.getContests({
       limit: 8,
@@ -27,22 +30,12 @@ const CustomerDashboard = (props) => {
     });
   };
 
-  // componentDidMount () {
-  //   getContests();
-  // }
-
   const getContests = () => {
     props.getContests({
-      limit: 8,
+      // limit: 8,
       contestStatus: props.customerFilter,
     });
   };
-
-  // componentDidUpdate (prevProps, prevState, snapshot) {
-  //   if (props.customerFilter !== prevProps.customerFilter) {
-  //     getContests();
-  //   }
-  // }
 
   const goToExtended = (contest_id) => {
     props.history.push(`/contest/${contest_id}`);
@@ -63,22 +56,22 @@ const CustomerDashboard = (props) => {
     return array;
   };
 
-  // componentWillUnmount () {
-  //   props.clearContestsList();
-  // }
-
   const tryToGetContest = () => {
     props.clearContestsList();
     getContests();
   };
-
+  const renderFilter = (status) => {
+    if (isSelect === status) return null;
+    setIsSelect(status);
+    props.newFilter(status);
+  };
   const { error, haveMore } = props;
   const { customerFilter } = props;
   return (
     <div className={styles.mainContainer}>
       <div className={styles.filterContainer}>
         <div
-          onClick={() => props.newFilter(CONSTANTS.CONTEST_STATUS_ACTIVE)}
+          onClick={() => renderFilter(CONSTANTS.CONTEST_STATUS_ACTIVE)}
           className={classNames({
             [styles.activeFilter]:
               CONSTANTS.CONTEST_STATUS_ACTIVE === customerFilter,
@@ -88,7 +81,7 @@ const CustomerDashboard = (props) => {
           Active Contests
         </div>
         <div
-          onClick={() => props.newFilter(CONSTANTS.CONTEST_STATUS_FINISHED)}
+          onClick={() => renderFilter(CONSTANTS.CONTEST_STATUS_FINISHED)}
           className={classNames({
             [styles.activeFilter]:
               CONSTANTS.CONTEST_STATUS_FINISHED === customerFilter,
@@ -99,7 +92,7 @@ const CustomerDashboard = (props) => {
           Completed contests
         </div>
         <div
-          onClick={() => props.newFilter(CONSTANTS.CONTEST_STATUS_PENDING)}
+          onClick={() => renderFilter(CONSTANTS.CONTEST_STATUS_PENDING)}
           className={classNames({
             [styles.activeFilter]:
               CONSTANTS.CONTEST_STATUS_PENDING === customerFilter,

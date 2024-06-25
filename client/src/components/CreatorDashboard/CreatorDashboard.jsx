@@ -28,6 +28,13 @@ const types = [
 ];
 
 const CreatorDashboard = (props) => {
+
+  useEffect(() => {
+    props.getDataForContest();
+    if (parseUrlForParams(props.location.search) && !props.contests.length)
+      getContests(props.creatorFilter); //eslint-disable-next-line
+  }, [props.creatorFilter]);
+
   const renderSelectType = () => {
     const array = [];
     const { creatorFilter } = props;
@@ -87,24 +94,19 @@ const CreatorDashboard = (props) => {
       </select>
     );
   };
+  const getContests = (filter) => {
+    props.getContests({
+      // limit: 8,
+      offset: 0,
+      ...filter,
+    });
+  };
 
   // componentWillReceiveProps(nextProps, nextContext) {
   //   if (nextProps.location.search !== props.location.search) {
   //     parseUrlForParams(nextProps.location.search);
   //   }
   // }
-  useEffect(() => {
-    props.getDataForContest();
-    if (parseUrlForParams(props.location.search) && !props.contests.length)
-      getContests(props.creatorFilter); //eslint-disable-next-line
-  }, []);
-  const getContests = (filter) => {
-    props.getContests({
-      limit: 8,
-      offset: 0,
-      ...filter,
-    });
-  };
 
   const changePredicate = ({ name, value }) => {
     const { creatorFilter } = props;
@@ -163,22 +165,10 @@ const CreatorDashboard = (props) => {
       ...getPredicateOfRequest(),
     });
   };
-
-  const setContestList = () => {
-    const array = [];
-    const { contests } = props;
-    for (let i = 0; i < contests.length; i++) {
-      array.push(
-        <ContestBox
-          data={contests[i]}
-          key={contests[i].id}
-          goToExtended={goToExtended}
-        />
-      );
-    }
-    return array;
-  };
-
+  const { contests } = props;
+  const setContestList = (contest) => (
+    <ContestBox data={contest} key={contest.id} goToExtended={goToExtended} />
+  );
   const goToExtended = (contestId) => {
     props.history.push(`/contest/${contestId}`);
   };
@@ -266,7 +256,7 @@ const CreatorDashboard = (props) => {
           history={props.history}
           haveMore={haveMore}
         >
-          {setContestList()}
+          {contests.map(setContestList)}
         </ContestsContainer>
       )}
     </div>

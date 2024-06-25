@@ -2,23 +2,24 @@ import React, { useEffect } from 'react';
 import styles from './ContestContainer.module.sass';
 import Spinner from '../Spinner/Spinner';
 
-const ContestsContainer = (props) => {
-  useEffect(() => {
-    window.addEventListener('scroll', scrollHandler);
-    return () => {
-      window.removeEventListener('scroll', scrollHandler);
-    }; //eslint-disable-next-line
-  }, []);
-  const scrollHandler = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
-      if (props.haveMore) {
-        props.loadMore(props.children.length);
-      }
-    }
-  };
+const 
+ContestsContainer = (props) => {
+  // useEffect(() => {
+  //   window.addEventListener('scroll', scrollHandler);
+  //   return () => {
+  //     window.removeEventListener('scroll', scrollHandler);
+  //   }; //eslint-disable-next-line
+  // }, []);
+  // const scrollHandler = () => {
+  //   if (
+  //     window.innerHeight + document.documentElement.scrollTop ===
+  //     document.documentElement.offsetHeight
+  //   ) {
+  //     if (props.haveMore) {
+  //       props.loadMore(props.children.length);
+  //     }
+  //   }
+  // };
   const { isFetching } = props;
   if (!isFetching && props.children.length === 0) {
     return <div className={styles.notFound}>Nothing not found</div>;

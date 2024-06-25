@@ -28,7 +28,7 @@ const ContestBox = props => {
     <div
       className={styles.contestBoxContainer}
       onClick={() => props.goToExtended(id)}
-    >
+    > 
       <div className={styles.mainContestInfo}>
         <div className={styles.titleAndIdContainer}>
           <span className={styles.title}>{title}</span>
