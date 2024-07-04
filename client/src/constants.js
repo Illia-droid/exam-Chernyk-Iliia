@@ -2,6 +2,7 @@ const env = process.env.NODE_ENV || 'development';
 const serverIP = 'localhost';
 const serverPort = 3000;
 const CONSTANTS = {
+  CONTACT_PHONE: '(877)-355-3585',
   CUSTOMER: 'customer',
   CREATOR: 'creator',
   CONTEST_STATUS_ACTIVE: 'active',
@@ -20,7 +21,7 @@ const CONSTANTS = {
   publicURL:
     env === 'production'
       ? `http://${serverIP}:80/images/`
-      : `http://${serverIP}:${serverPort}/public/images/`,
+      : `http://${serverIP}:${serverPort}/images/`,
   NORMAL_PREVIEW_CHAT_MODE: 'NORMAL_PREVIEW_CHAT_MODE',
   FAVORITE_PREVIEW_CHAT_MODE: 'FAVORITE_PREVIEW_CHAT_MODE',
   BLOCKED_PREVIEW_CHAT_MODE: 'BLOCKED_PREVIEW_CHAT_MODE',
