@@ -5,14 +5,14 @@ import { useField } from 'formik';
 const ImageUpload = (props) => {
   const [field] = useField(props.name);
   const { uploadContainer, inputContainer, imgStyle } = props.classes;
-  const onChange = (e) => {
+  const handleImage = (e) => {
     const node = window.document.getElementById('imagePreview');
     const file = e.target.files[0];
     const imageType = /image.*/;
     if (!file.type.match(imageType)) {
       e.target.value = '';
     } else {
-      field.onChange(file);
+      props.formikProps.setFieldValue(props.name, file);
       const reader = new FileReader();
       reader.onload = () => {
         node.src = reader.result;
@@ -25,13 +25,13 @@ const ImageUpload = (props) => {
       <div className={inputContainer}>
         <span>Support only images (*.png, *.gif, *.jpeg)</span>
         <input
-          {...field}
-          id="fileInput"
+          name={props.name}
+          id="offerData"
           type="file"
           accept=".jpg, .png, .jpeg"
-          onChange={onChange}
+          onChange={handleImage}
         />
-        <label htmlFor="fileInput">Chose file</label>
+        <label htmlFor="offerData">Chose file</label>
       </div>
       <img
         id="imagePreview"

@@ -5,7 +5,7 @@ import styles from './Header.module.sass';
 import CONSTANTS from '../../constants';
 import { clearUserStore } from '../../store/slices/userSlice';
 import { getUser } from '../../store/slices/userSlice';
-
+import Logo from '../Logo';
 const Header = (props) => {
   useEffect(() => {
     if (!props.data) {
@@ -118,7 +118,7 @@ const Header = (props) => {
         </div>
       </div>
       <div className={styles.navContainer}>
-        <img
+        <Logo
           src={`${CONSTANTS.STATIC_IMAGES_PATH}blue-logo.png`}
           className={styles.logo}
           alt="blue_logo"
