@@ -145,10 +145,6 @@ const ContestForm = (props) => {
                   />
                 </div>
                 <OptionalSelects {...props} />
-                {/* <label>
-                  <span>logo:</span>
-                  <input name="file" type="file" onChange={handleFIle} />
-                </label> */}
                 <FieldFileInput
                   name="file"
                   classes={{

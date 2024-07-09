@@ -74,10 +74,19 @@ const UpdateUserInfoForm = (props) => {
                 }}
               />
             </div>
-            <label>
+            {/* <label>
               <span>avatar:</span>
               <input name="file" type="file" onChange={handleFIle} />
-            </label>
+            </label> */}
+            <ImageUpload
+              name="file"
+              classes={{
+                uploadContainer: styles.imageUploadContainer,
+                inputContainer: styles.uploadInputContainer,
+                imgStyle: styles.imgStyle,
+              }}
+              formikProps={formikProps}
+            />
             <button type="submit" disabled={submitting}>
               Submit
             </button>
