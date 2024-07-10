@@ -167,7 +167,9 @@ const Header = (props) => {
                 />
                 <ul>
                   <li>
-                    <a href="http://www.google.com">HOW IT WORKS</a>
+                    <Link to="/how-it-works" style={{ textDecoration: 'none' }}>
+                      <span className={styles.btn}>HOW IT WORKS</span>
+                    </Link>
                   </li>
                   <li>
                     <a href="http://www.google.com">PRICING</a>

@@ -20,7 +20,7 @@ import ContestCreationPage from './pages/ContestCreation/ContestCreationPage';
 import 'react-toastify/dist/ReactToastify.css';
 import CONSTANTS from './constants';
 import browserHistory from './browserHistory';
-
+import HowItWorksPage from './pages/HowItWorksPage/index';
 
 const App = () => {
   return (
@@ -48,6 +48,7 @@ const App = () => {
           path='/registration'
           component={OnlyNotAuthorizedUserHoc(RegistrationPage)}
         />
+        <Route exact path='/how-it-works' component={HowItWorksPage} />
         <Route exact path='/payment' component={PrivateHoc(Payment)} />
         <Route
           exact
